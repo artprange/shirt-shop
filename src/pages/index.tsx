@@ -7,6 +7,9 @@ import camiseta1 from "../pages/assets/1.png"
 import camiseta2 from "../pages/assets/2.png"
 import camiseta3 from "../pages/assets/3.png"
 import Image from "next/image"
+import { stripe } from '../lib/stripe';
+import { GetServerSideProps } from "next"
+require('dotenv').config({ path: '.env.local' });
 
 
 
@@ -54,8 +57,11 @@ export default function Home(props: any) {
 )}
 
 
-export const getServerSideProps = async() =>{
-  await new Promise(resolve =>setTimeout(resolve, 2000))
+export const getServerSideProps: GetServerSideProps  = async() =>{
+  const response = await stripe.products.list()
+
+  console.log(response.data)
+  
   return{
     props:{
       list:[1, 2, 3]
