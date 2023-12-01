@@ -4,7 +4,7 @@ export const HomeContainer = styled('main', {
     display: 'flex',
     // gap: '3rem',
     width:'100%',
-    maxWidth: 'calc(100vw -((100vw - 1180px)/2))',
+    maxWidth: 'calc(100vw - ((100vw - 1180px)/2))',
     marginLeft: 'auto',
     minHeight:656, 
 });
@@ -36,9 +36,9 @@ export const Product = styled('a', {
 
         borderRadius: 6,
 
-        display:'flex',
-        alignItems:'center',
-        justifyContent:'space-between',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
 
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
 
