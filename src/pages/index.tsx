@@ -60,11 +60,21 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const products = response.data.map((product) => {
     const price = product.default_price as Stripe.Price;
+
+   
+    const formattedPrice =
+      price.unit_amount !== null
+        ? new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          }).format(price.unit_amount / 100)
+        : 'N/A'; 
+
     return {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount, 
+      price: formattedPrice,
     };
   });
 
