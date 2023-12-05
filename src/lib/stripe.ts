@@ -14,12 +14,12 @@
 
 import Stripe from 'stripe';
 
-// Check if the environment variable is defined
+//checking the enviroment exists
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Stripe secret key is not defined');
 }
 
-// Now you can safely use it
+// using the secure key safely :)
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2023-10-16',
   appInfo: {

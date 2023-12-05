@@ -1,15 +1,15 @@
-
-
+import { GetStaticProps } from "next"
 import { HomeContainer, Product } from "../styles/pages/home"
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
+import Image from "next/image"
+import { stripe } from '../lib/stripe';
+import Stripe from "stripe"
+
+
 import camiseta1 from "../assets/1.png"
 import camiseta2 from "../assets/2.png"
 import camiseta3 from "../assets/3.png"
-import Image from "next/image"
-import { stripe } from '../lib/stripe';
-import { GetStaticProps } from "next"
-import Stripe from "stripe"
 
 require('dotenv').config({ path: '.env.local' });
 
@@ -36,7 +36,7 @@ export default function Home({ products }: HomeProps) {
       {products.map((product) => {
         return (
           <Product key={product.id} className="keen-slider__slide">
-            {/* Use the product's imageUrl dynamically */}
+          
             <Image src={product.imageUrl} alt={product.name} width={520} height={480} />
 
             <footer>
@@ -84,6 +84,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products,
     },
-    revalidate: 60 * 60 * 2,
+    revalidate: 60 * 60 * 2, // every 2 hours
   };
 };
