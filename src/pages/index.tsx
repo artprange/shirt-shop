@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
 
-  console.log(response.data);
+  // console.log(response.data)
 
   return {
     props: {

@@ -35,18 +35,19 @@ export function Product({ product }: ProductProps) {
   );
 }
 
+
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [
       { params: { id: 'prod_MIwMNZU8sIbVfI' } }
     ],
-    fallback: false,
+     fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
   if (!params) {
-    // Handle the case when params is undefined. For now, I'm returning an empty object as a placeholder
+ 
     return {
       props: {
         product: {},
