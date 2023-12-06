@@ -1,4 +1,6 @@
-import { styled } from "@/styles"
+
+import { styled } from ".."
+
 
 
 
