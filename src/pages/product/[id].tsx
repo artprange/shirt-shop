@@ -127,19 +127,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
       paths: [
           { params: { id: 'prod_P5PgZd8YWdKzi3' }}
       ],
-      fallback: true,
+      fallback: 'blocking',
   }
 }
   
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
-  const productId = params?.id;
-
-  if (!productId) {
-    // Handle the case where productId is null or undefined
+  if (!params) {
+    // Handle the case when params is undefined. For now, I'm returning an empty object as a placeholder
     return {
-      notFound: true,
+      props: {
+        product: {},
+      },
+      revalidate: 60 * 60 * 1, // 1 hour
     };
   }
+  
+  const productId = params.id;
 
   const product = await stripe.products.retrieve(productId, {
     expand: ['default_price'],
