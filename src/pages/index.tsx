@@ -10,6 +10,7 @@ import Image from "next/image"
 import { stripe } from '../lib/stripe';
 import { GetStaticProps } from "next"
 import Stripe from "stripe"
+import Link from "next/link"
 
 require('dotenv').config({ path: '.env.local' });
 
@@ -35,8 +36,9 @@ export default function Home({ products }: HomeProps) {
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map((product) => {
         return (
-          <Product key={product.id} className="keen-slider__slide">
-            {/* Use the product's imageUrl dynamically */}
+          <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
+           <Product key={product.id} className="keen-slider__slide"> 
+       
             <Image src={product.imageUrl} alt={product.name} width={520} height={480} />
 
             <footer>
@@ -44,6 +46,7 @@ export default function Home({ products }: HomeProps) {
               <span>R${product.price}</span>
             </footer>
           </Product>
+          </Link>
         );
       })}
     </HomeContainer>
