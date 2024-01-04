@@ -1,5 +1,5 @@
 
-
+import Head from 'next/head'
 import { HomeContainer, Product } from "../styles/pages/home"
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
@@ -13,7 +13,6 @@ import Stripe from "stripe"
 import Link from "next/link"
 
 require('dotenv').config({ path: '.env.local' });
-
 
 interface HomeProps{
   products:{
@@ -33,6 +32,12 @@ export default function Home({ products }: HomeProps) {
   });
 
   return (
+
+    <>
+    <Head>
+      <title>Home | Ignite Shop</title>
+    </Head>
+
     <HomeContainer ref={sliderRef} className="keen-slider">
       {products.map((product) => {
         return (
@@ -50,9 +55,9 @@ export default function Home({ products }: HomeProps) {
         );
       })}
     </HomeContainer>
+    </>
   );
 }
-
 
 
 
