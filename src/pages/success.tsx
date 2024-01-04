@@ -1,10 +1,11 @@
-import { stripe } from 'libs/stripe'
+
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stripe from 'stripe'
 import * as C from '../styles/pages/success'
+import { stripe } from '@/lib/stripe'
 
 interface SuccessProps {
   customerName: string

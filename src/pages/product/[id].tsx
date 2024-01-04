@@ -1,6 +1,5 @@
 
 
-
 import { ImageContainer, ProductContainer, ProductDetails } from "@/styles/pages/product"
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next';
 import { stripe } from '../../lib/stripe';
@@ -8,7 +7,7 @@ import Stripe from 'stripe';
 import Image from 'next/image';
 import axios from "axios";
 import { useState } from "react";
-
+import Head from "next/head";
 
 interface ProductProps {
   product: {
@@ -24,11 +23,9 @@ interface ProductProps {
 export default function Product({ product }: ProductProps) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
 
-
   async function handleBuyProduct(){
     try{
       setIsCreatingCheckoutSession(true);
-
 
       const response = await axios.post('/api/checkout', {
         priceId: product.defaultPriceId,
@@ -48,8 +45,11 @@ export default function Product({ product }: ProductProps) {
     }
   }
 
-
   return (
+    <> 
+     <Head>
+    <title>{product.name} | Ignite Shop</title>
+  </Head>
       <ProductContainer>
           <ImageContainer>
               <Image src={product.imageUrl} width={520} height={480} alt="product"/>
@@ -64,6 +64,7 @@ export default function Product({ product }: ProductProps) {
           </ProductDetails>
 
       </ProductContainer>
+      </>
 
   )
 }
